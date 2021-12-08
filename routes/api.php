@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\api\PertaminaController;
+use App\Http\Controllers\api\TypeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
+
+Route::middleware('auth:sanctum')->group(function (){
+    Route::get('pertamina', [PertaminaController::class, 'index']);
+    Route::get('pertamina/{id}', [PertaminaController::class, 'show']);
+    Route::post('pertamina/store', [PertaminaController::class, 'store']);
+    Route::post('pertamina/edit/{pertamina}', [PertaminaController::class, 'update']);
+    Route::delete('pertamina/delete/{pertamina}', [PertaminaController::class, 'delete']);
+    Route::get('type', [TypeController::class, 'index']);
+    Route::get('type/{id}', [TypeController::class, 'show']);
+    Route::post('type/store', [TypeController::class, 'store']);
+
 });

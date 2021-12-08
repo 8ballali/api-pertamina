@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSpbusTable extends Migration
+class CreateTanksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,11 @@ class CreateSpbusTable extends Migration
      */
     public function up()
     {
-        Schema::create('spbus', function (Blueprint $table) {
+        Schema::create('tanks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('code');
-            $table->string('address');
-            $table->unsignedBigInteger('region_id');
+            $table->string('mac');
             $table->timestamps();
-            $table->foreign('region_id')
-                  ->references('id')->on('regions')
-                  ->onDelete('cascade');
         });
     }
 
@@ -33,6 +28,6 @@ class CreateSpbusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('spbus');
+        Schema::dropIfExists('tanks');
     }
 }

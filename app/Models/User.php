@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'gender',
+        'avatar',
+        'region_id'
     ];
 
     /**
@@ -41,4 +44,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    protected $appends = [
+        'avatar_url'
+    ];
+
+    public function getAvatarUrlAttribute(){
+        return url('storage/'. $this->avatar);
+    }
+
+    public function region()
+    {
+        return $this->hasOne(Region::class,'id', 'region_id');
+    }
+
+
 }
