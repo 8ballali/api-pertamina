@@ -57,5 +57,8 @@ class User extends Authenticatable
         return $this->hasOne(Region::class,'id', 'region_id');
     }
 
-
+    public function pengisian()
+    {
+        return $this->hasMany(Pengisian::class,'user_id','id');
+    }
 }

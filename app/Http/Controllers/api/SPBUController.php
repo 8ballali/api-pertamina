@@ -3,61 +3,62 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pertamina;
+use App\Models\Spbu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class PertaminaController extends Controller
+class SPBUController extends Controller
 {
     public function index()
     {
-        $pertamina = Pertamina::with('region')->get();
+        $spbu = Spbu::with('region')->get();
         return response()->json([
             'success' => true,
-            'message' => "Data Pertamina",
-            'data' => $pertamina
+            'message' => 'Data Spbu',
+            'data' => $spbu
         ],200);
     }
     public function show($id)
     {
-        $pertamina = Pertamina::find($id)->with('region')->get();
-        if ($pertamina) {
+        $spbu = Spbu::find($id);
+        if ($spbu  ) {
             return response()->json([
                 'success' => true,
-                'message' => "Data Pertamina",
-                'data' => $pertamina
-            ], 200);
+                'message' => 'Data Spbu',
+                'data' => $spbu
+            ],200);
         }else {
             return response()->json([
                 'success' => false,
-                'message' => "Data Not Found"
+                'message' => 'Data Not Found'
             ],200);
         }
+
     }
     public function store(Request $request)
     {
         $data = $request->all();
         $rules = [
             'name' => 'required',
-            'address' => 'required',
             'code' => 'required',
-            'region_id' => 'required'
+            'region_id' => 'required',
         ];
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 200);
         }
-        $pertamina = Pertamina::create($data);
+        $spbu = Spbu::create($data);
         return response()->json([
             'success' => true,
-            'message' => "Data Pertamina Created",
-            'data' => $pertamina
+            'message' => "Data Spbu Created",
+            'data' => $spbu
         ],200);
+
     }
     public function update(Request $request,$id)
     {
         $data = $request->all();
-        $pertamina = Pertamina::find($id);
+        $spbu = Spbu::find($id);
         $rules = [
             'name'          => 'required',
         ];
@@ -65,26 +66,21 @@ class PertaminaController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 200);
         }
-        $pertamina->update($data);
+        $spbu->update($data);
         return response()->json([
             'success' => true,
-            'message' => 'Data Updated',
-            'data' => $pertamina
+            'message' => 'Data SPBU Updated',
+            'data' => $spbu
         ],200);
     }
     public function delete($id)
     {
-        $pertamina = Pertamina::find($id);
-        try {
-            $pertamina->delete();
-            return response()->json([
-                'success' => true,
-                'message' => 'Data Deleted'
-            ],200);
-        } catch ( QueryException $e ) {
-            return response()->json([
-                'message' => "Failed " . $e->errorInfo
-            ],200);
-        }
+        $spbu = Spbu::find($id);
+        $spbu->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Data SPBU Deleted'
+        ],200);
+
     }
 }

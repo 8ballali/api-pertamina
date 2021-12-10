@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Spbu extends Model
 {
     protected $table = "spbus";
-    protected $fillable = ['name', 'code', 'region_id'];
+    protected $fillable = ['name', 'address', 'code', 'region_id'];
     use HasFactory;
 
     public function region()

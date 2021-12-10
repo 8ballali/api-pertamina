@@ -15,4 +15,8 @@ class Pertamina extends Model
     {
         return $this->hasOne(Region::class,'id','region_id');
     }
+    public function pengisian()
+    {
+        return $this->hasOne(Pengisian::class,'pertamina_id','id');
+    }
 }

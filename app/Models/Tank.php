@@ -15,4 +15,9 @@ class Tank extends Model
     {
         return $this->hasMany(Isi_Tank::class,'tank_id','id');
     }
+
+    public function pengisian()
+    {
+        return $this->hasOne(Pengisian::class,'tank_id','id');
+    }
 }
