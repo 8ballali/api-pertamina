@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(Region_Seeder::class);
         $this->call(TypeBBM_Seeder::class);
+        $this->call(RoleSeeder::class);
     }
 }

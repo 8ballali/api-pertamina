@@ -19,4 +19,8 @@ class Type extends Model
     {
         return $this->hasOne(Detail_Pengisian::class,'type_id','id');
     }
+    public function detail_order()
+    {
+        return $this->hasOne(Detail_Order::class);
+    }
 }

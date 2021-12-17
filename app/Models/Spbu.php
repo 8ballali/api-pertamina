@@ -15,4 +15,8 @@ class Spbu extends Model
     {
         return $this->hasOne(Region::class,'id','region_id');
     }
+    public function order()
+    {
+        return $this->hasOne(Order::class,'id','order_id');
+    }
 }

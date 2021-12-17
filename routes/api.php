@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\Isi_TankController;
+use App\Http\Controllers\api\OrderController;
+use App\Http\Controllers\api\PengeluaranController;
 use App\Http\Controllers\api\PengisianController;
 use App\Http\Controllers\api\PertaminaController;
+use App\Http\Controllers\api\RoleController;
 use App\Http\Controllers\api\SPBUController;
 use App\Http\Controllers\api\TankController;
 use App\Http\Controllers\api\TypeController;
@@ -53,5 +56,19 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::post('pengisian/store', [PengisianController::class, 'store']);
     Route::post('pengisian/edit/{pengisian}', [PengisianController::class, 'update']);
     Route::delete('pengisian/delete/{pengisian}', [PengisianController::class, 'delete']);
+    Route::get('pengeluaran', [ PengeluaranController::class, 'index']);
+    Route::get('pengeluaran/{id}', [PengeluaranController::class, 'show']);
+    Route::post('pengeluaran/store', [PengeluaranController::class, 'store']);
+    Route::post('pengeluaran/edit/{pengisian}', [PengeluaranController::class, 'update']);
+    Route::delete('pengeluaran/delete/{pengisian}', [PengeluaranController::class, 'delete']);
+    Route::get('role', [ RoleController::class, 'index']);
+    Route::get('role/{id}', [RoleController::class, 'show']);
+    Route::post('role/store', [RoleController::class, 'store']);
+    Route::post('role/edit/{role}', [RoleController::class, 'update']);
+    Route::delete('role/delete/{role}', [RoleController::class, 'delete']);
+    Route::get('order', [ OrderController::class, 'index']);
+    Route::get('order/{id}', [OrderController::class, 'show']);
+    Route::post('order/store', [OrderController::class, 'store']);
+    Route::delete('order/delete/{order}', [OrderController::class, 'delete']);
 
 });

@@ -42,6 +42,7 @@ class AuthController extends Controller
             'gender' => $request->gender,
             'avatar' => $avatar,
             'region_id' => $request->region_id,
+            'role_id' => $request->role_id,
             'password' => Hash::make($request->password),
         ]);
         if ($register) {
@@ -74,7 +75,7 @@ class AuthController extends Controller
                 ],200);
             }
             // Jika Hash Tidak sesuai maka Error
-            $user = User::where('email', $request->email)->with('region')->first();
+            $user = User::where('email', $request->email)->with('region')->with('roles')->first();
             $user->tokens()->delete();
             $tokenResult = $user->createToken('authToken')->plainTextToken;
 

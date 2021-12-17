@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'gender',
         'avatar',
-        'region_id'
+        'region_id',
+        'role_id',
     ];
 
     /**
@@ -60,5 +61,9 @@ class User extends Authenticatable
     public function pengisian()
     {
         return $this->hasMany(Pengisian::class,'user_id','id');
+    }
+    public function roles()
+    {
+        return $this->hasOne(Roles::class,'id','role_id');
     }
 }
