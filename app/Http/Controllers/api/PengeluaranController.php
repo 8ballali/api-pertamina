@@ -70,7 +70,6 @@ class PengeluaranController extends Controller
                     'type_id' => $type['type_id'],
                     'value' => $type['value'],
                 ]);
-
             }
             return response()->json([
                 'success' => true,

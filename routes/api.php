@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\AssignOrderController;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\Isi_TankController;
 use App\Http\Controllers\api\OrderController;
@@ -70,5 +71,9 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::get('order/{id}', [OrderController::class, 'show']);
     Route::post('order/store', [OrderController::class, 'store']);
     Route::delete('order/delete/{order}', [OrderController::class, 'delete']);
+    Route::get('assign-order', [ AssignOrderController::class, 'index']);
+    Route::get('assign-order/{id}', [AssignOrderController::class, 'show']);
+    Route::post('assign-order/store', [AssignOrderController::class, 'store']);
+    Route::delete('assign-order/delete/{assign-order}', [AssignOrderController::class, 'delete']);
 
 });

@@ -10,9 +10,18 @@ use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $order = Detail_Order::with('order')->with('type')->get();
+        $order = Detail_Order::with('order')->with('type')
+        ->when(($request->get('spbu_id')), function ($query) use ($request)
+        {
+            $query->where('spbu_id', $request->spbu_id);
+        })
+        ->when(($request->get('tanggal')), function ($query) use ($request)
+        {
+            $query->whereDate('orders.created_at', 'like', '%' . $request->tanggal . '%' ,);
+        })
+        ->get();
         return response()->json([
             'success' => true,
             'message' => 'Data Order',

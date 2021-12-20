@@ -66,4 +66,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Roles::class,'id','role_id');
     }
+
+    public function assign_order()
+    {
+        return $this->hasOne(AssignOrder::class,'user_id','id');
+    }
 }

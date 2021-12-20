@@ -30,4 +30,9 @@ class Order extends Model
     {
         return $this->hasOne(Type::class,'order_id','id');
     }
+
+    public function assign_order()
+    {
+        return $this->hasOne(AssignOrder::class,'order_id','id');
+    }
 }

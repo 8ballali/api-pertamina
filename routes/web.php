@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,11 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/auth', [AuthController::class, 'index']);
+Route::get('/login', [AuthController::class, 'index']);
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/pertamina/list-order', [OrderController::class, 'index']);
-Route::get('/pertamina/assign-order', [OrderController::class, 'index']);
+
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/pertamina/list-order', [OrderController::class, 'index']);
+    Route::get('/pertamina/assign-order', [OrderController::class, 'index']);
+});
 
 Route::get('/', function () {
     return view('welcome');

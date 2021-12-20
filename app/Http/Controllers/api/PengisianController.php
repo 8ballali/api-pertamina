@@ -66,14 +66,20 @@ class PengisianController extends Controller
             return response()->json($validator->errors(), 200);
         }
         $pengisian = Pengisian::create($data);
-
             foreach ($request->type as $type) {
                 Detail_Pengisian::create([
                     'pengisian_id' => $pengisian->id,
                     'type_id' => $type['type_id'],
                     'value' => $type['value'],
                 ]);
-
+            }
+            foreach ($request->isi as $isi) {
+                Isi_Tank::create([
+                    'tank_id' => $request->tank_id,
+                    'type_id' => $type['type_id'],
+                    'value' => $type['value'],
+                    'nomor_tank' => $isi['nomor_tank']
+                ]);
             }
             return response()->json([
                 'success' => true,
