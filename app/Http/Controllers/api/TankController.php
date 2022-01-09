@@ -11,7 +11,7 @@ class TankController extends Controller
 {
     public function index()
     {
-        $tank = Tank::get();
+        $tank = Tank::with('isi_tank')->get();
         return response()->json([
             'success' =>true,
             'message' => 'Data Tank',
@@ -39,7 +39,10 @@ class TankController extends Controller
         $data = $request->all();
         $rules = [
             'name' => 'required',
-            'mac' => 'required'
+            'mac' => 'required',
+            'plat' => 'required',
+            'total_container' => 'required',
+            'capacity' => 'required'
         ];
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {

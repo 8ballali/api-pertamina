@@ -11,6 +11,14 @@ class Detail_Pengisian extends Model
     protected $fillable = ['pengisian_id', 'type_id', 'value'];
     use HasFactory;
 
+    protected $appends = [
+        'type'
+    ];
+
+    public function getTypeAttribute(){
+        return $this->type()->get();
+    }
+
     public function pengisian()
     {
         return $this->belongsTo(Pengisian::class);

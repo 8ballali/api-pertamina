@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tank extends Model
 {
     protected $table = "tanks";
-    protected $fillable = ['name', 'mac'];
+    protected $fillable = ['name', 'mac','plat', 'total_container', 'capacity'];
     use HasFactory;
 
     public function isi_tank()

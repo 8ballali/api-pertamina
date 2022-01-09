@@ -11,9 +11,17 @@ class Detail_Order extends Model
     protected $fillable = ['order_id', 'type_id', 'value'];
     use HasFactory;
 
+    protected $appends = [
+        'type'
+    ];
+
+    public function getTypeAttribute(){
+        return $this->type()->get();
+    }
+
     public function order()
     {
-        return $this->belongsTo(Order::class,'order_id');
+        return $this->belongsTo(Order::class);
     }
     public function type()
     {

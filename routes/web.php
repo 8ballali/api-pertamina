@@ -21,6 +21,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/pertamina/list-order', [OrderController::class, 'index']);
+    Route::get('/pertamina/list-order-detail/{order_id}', [OrderController::class, 'index']);
     Route::get('/pertamina/assign-order', [OrderController::class, 'index']);
 });
 

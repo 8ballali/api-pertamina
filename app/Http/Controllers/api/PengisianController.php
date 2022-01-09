@@ -13,7 +13,7 @@ class PengisianController extends Controller
 {
     public function index(Request $request)
     {
-        $pengisian = Pengisian::with('user')->with('pertamina')->with('tank')
+        $pengisian = Pengisian::with('detail_pengisian')->with('user')->with('pertamina')->with('tank')
         ->when(($request->get('user_id')), function ($query) use ($request)
         {
             $query->where('user_id', $request->get('user_id'));

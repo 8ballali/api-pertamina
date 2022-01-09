@@ -176,10 +176,10 @@
                 <div class="container">
                     <div class="card mt-5">
                         <div class="card-header text-center">
-                            Konfirmasi Langganan
+                            Order Assigned
                         </div>
                         <div class="card-body">
-                            <a href="{{url('/kasirin-toko/subscribers')}}" class="btn btn-primary">Back</a>
+                            <a href="{{url('/pertamina/assign-order')}}" class="btn btn-primary">Back</a>
                             <br />
                             <br />
 

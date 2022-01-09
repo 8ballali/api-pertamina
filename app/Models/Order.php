@@ -12,12 +12,18 @@ class Order extends Model
     use HasFactory;
 
     protected $appends = [
-        'spbu'
+        'spbu',
+        'detail_order'
     ];
+
     public function getSpbuAttribute(){
         return $this->spbu()->get();
     }
 
+    public function getDetailOrderAttribute()
+    {
+        return $this->detail_order()->get();
+    }
     public function spbu()
     {
         return $this->belongsTo(Spbu::class,'spbu_id');

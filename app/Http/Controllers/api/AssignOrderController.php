@@ -14,7 +14,7 @@ class AssignOrderController extends Controller
         $assign = AssignOrder::when(($request->get('user_id')), function ($query) use ($request)
         {
             $query->where('user_id', $request->user_id);
-        })->with('user')->with('order')
+        })->with('order')->with('user')
         ->get();
         if ($assign->isNotEmpty()) {
             return response()->json([

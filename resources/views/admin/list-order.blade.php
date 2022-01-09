@@ -150,57 +150,29 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th class="text-center">SPBU</th>
-                                    <th class="text-center">Jenis Order</th>
-                                    <th class="text-center">Jumlah </th>
-                                    <th class="text-center">Status</th>
-                                    <th class="text-center">Option</th>
+                                    <th>SPBU</th>
+                                    <th>Status</th>
+                                    <th>Option</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach($subscribers as $subs)
+                                @foreach($order as $o)
                                 <tr>
 
-
-                                    <td>{{ $subs->user->name }}</td>
-                                    <td>{{ $subs->subscription->name }}</td>
-                                    <td>{{ $subs->status_pembayaran }}</td>
-                                    <td>{{ $subs->start_at }}</td>
-                                    <td>{{ $subs->stopped_at }}</td>
-                                    <td><img src="{{ url('storage/').'/'.$subs->foto_struk }}" height="40px" width="40px" />
                                     <td>
-                                        <a href="{{url('/e-vote/admin/community/delete/'.$subs->id)}}"
-                                            onClick="confirm('Delete entry?')" class="btn btn-danger btn-sm">Hapus</a>
-                                        <a href="{{url('/kasirin-toko/subscribers/edit/'.$subs->id)}}"
-                                            class="btn btn-success">Konfirmasi</a>
+                                        @foreach($o->spbu as $spbu)
+                                        {{$spbu->name}}
+                                         @endforeach
+                                    </td>
+                                    <td>{{ $o->status}}</td>
+                                    </td>
+                                    <td>
+                                        <a href="{{url('/e-vote/admin/vote/delete/'.$o->id) }}"
+                                          class="btn btn-primary btn-sm">Details</a>
                                     </td>
 
                                 </tr>
-                                @endforeach --}}
-                                <tr>
-                                    <td>SPBU Sampangan</td>
-                                    <td>Pertamax</td>
-                                    <td>8000 Liter</td>
-                                    <td class="text-warning text-center" style="width: 8rem;">Pending</td>
-                                    <td>
-                                        <a href=""
-                                            onClick="confirm('Delete entry?')" class="btn btn-primary btn-sm">Show</a>
-                                        <a href="{"
-                                            class="btn btn-success">Konfirmasi</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>SPBU Ngaliyan</td>
-                                    <td>Pertalite</td>
-                                    <td>16000 Liter</td>
-                                    <td class="text-success text-center"  style="width: 8rem;">Assigned</td>
-                                    <td>
-                                        <a href=""
-                                            onClick="confirm('Delete entry?')" class="btn btn-primary btn-sm">Show</a>
-                                        <a href="{"
-                                            class="btn btn-success">Konfirmasi</a>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                             <tfoot>
                             </tfoot>

@@ -12,8 +12,8 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-        $order = Detail_Order::with('order')->with('type')
-        ->when(($request->get('spbu_id')), function ($query) use ($request)
+        $order = Order::
+        when(($request->get('spbu_id')), function ($query) use ($request)
         {
             $query->where('spbu_id', $request->spbu_id);
         })
