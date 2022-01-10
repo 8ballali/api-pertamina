@@ -42,7 +42,7 @@ class AuthController extends Controller
             'gender' => $request->gender,
             'avatar' => $avatar,
             'region_id' => $request->region_id,
-            'role_id' => $request->role_id,
+            'role_id' => 2,
             'password' => Hash::make($request->password),
         ]);
         if ($register) {

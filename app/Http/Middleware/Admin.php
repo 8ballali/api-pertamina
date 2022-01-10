@@ -22,7 +22,7 @@ class Admin
         }
 
         if(Auth::user()->role_id != 1){
-            abort('403');
+            return response(null, 403);
         }
         return $next($request);
     }

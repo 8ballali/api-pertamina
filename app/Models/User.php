@@ -46,11 +46,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     protected $appends = [
-        'avatar_url'
+        'avatar_url',
+        'region',
+        'role'
     ];
 
     public function getAvatarUrlAttribute(){
         return url('storage/'. $this->avatar);
+    }
+
+    public function getRegionAttribute()
+    {
+        return $this->region()->get();
+    }
+
+    public function getRoleAttribute()
+    {
+        return $this->roles()->get();
     }
 
     public function region()

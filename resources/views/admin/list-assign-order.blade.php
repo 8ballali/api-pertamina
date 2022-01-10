@@ -34,7 +34,7 @@
                     <a href="{{url('/pertamina/list-order')}}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{url('/pertamina/list-order')}}" class="nav-link active">Data Order</a>
+                    <a href="{{url('#')}}" class="nav-link active">Assigned Order</a>
                 </li>
             </ul>
 
@@ -90,7 +90,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
-                            <a href="{{url('/pertamina/list-order')}}" class="nav-link active">
+                            <a href="{{url('/pertamina/list-order')}}" class="nav-link ">
                                 <i class="nav-icon fas fa-file-invoice-dollar"></i>
                                 <p>
                                     List Order
@@ -100,13 +100,21 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="{{url('/pertamina/list-assign-order')}}" class="nav-link ">
+                            <a href="{{url('/pertamina/list-assign-order')}}" class="nav-link active">
                                 <i class="nav-icon far fa-address-book"></i>
                                 <p>
-                                   List Assign Order
+                                    List Assign Order
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('/pertamina/assign-order/add')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Create Assign Order</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('logout')}}" class="nav-link">
@@ -128,48 +136,48 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Order</h1>
+                            <h1>Order Assigned</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Data Order</li>
+                                <li class="breadcrumb-item active">Order Assigned</li>
                             </ol>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
-
             <!-- Main content -->
             <section class="content">
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">List Data Order</h3>
+                        <h3 class="card-title">List Order Assigned</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>Pemesan</th>
-                                    <th>Option</th>
+                                    <th>Petugas</th>
+                                    <th>SPBU</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($order as $o)
+                                @foreach($assign_order as $a)
                                 <tr>
-
                                     <td>
-                                        @foreach($o->spbu as $spbu)
+                                          {{$a->user->name}}
+                                    </td>
+                                    <td>
+                                        @foreach ($a->order->spbu as $spbu)
                                         {{$spbu->name}}
-                                         @endforeach
+                                        @endforeach
                                     </td>
                                     <td>
-                                        <a href="{{url('/pertamina/list-order-detail/'.$o->id) }}"
-                                             class="btn btn-primary btn-sm">Details</a>
+                                        {{$a->order->status}}
                                     </td>
-
                                 </tr>
                                 @endforeach
                             </tbody>
