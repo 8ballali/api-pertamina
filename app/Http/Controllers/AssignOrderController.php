@@ -22,11 +22,11 @@ class AssignOrderController extends Controller
     }
     public function add()
     {
-        $user = User::where('role_id', '2')->get();
+        $staff = User::where('role_id', '2')->get();
         $order = Order::where('status', 'PENDING')->get();
         $spbu = Spbu::get();
-        $user_loggedin = Auth::user();
-        return view('admin.create-assign-order', compact('user', 'order','spbu', 'user', 'user_loggedin'));
+        $user = Auth::user();
+        return view('admin.create-assign-order', compact('staff', 'order','spbu', 'user'));
     }
     public function store(Request $request)
     {

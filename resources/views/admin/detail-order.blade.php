@@ -50,83 +50,7 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            {{-- <a href="/e-vote/admin" class="brand-link">
-                <img src="{{ url('/style/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">CAN CREATIVE</span>
-            </a> --}}
-
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="{{ url('/style/dist/img/pertamina.png')}}" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="{{url('/pertamina/list-order')}}" class="d-block">{{$user->name}}</a>
-                    </div>
-                </div>
-
-                <!-- SidebarSearch Form -->
-                <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                            aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                        <li class="nav-item menu-open">
-                            <a href="{{url('/pertamina/list-order')}}" class="nav-link active menu-open">
-                                <i class="nav-icon fas fa-file-invoice-dollar"></i>
-                                <p>
-                                    List Order
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{url('#')}}" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Detail Order</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{url('/pertamina/list-assign-order')}}" class="nav-link ">
-                                <i class="nav-icon far fa-address-book"></i>
-                                <p>
-                                    List Assign Order
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('logout')}}" class="nav-link">
-                                <i class="nav-icon fas fa-sign-out-alt"></i>
-                                <p>
-                                    Logout
-                                </p>
-                            </a>
-                        </li>
-                        <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-        </aside>
+        @extends('admin.master')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -160,9 +84,9 @@
                             <thead>
                                 <tr>
                                     <th>Pemesan</th>
+                                    <th>Alamat</th>
                                     <th>Jenis BBM</th>
                                     <th>Jumlah ( L )</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -174,6 +98,11 @@
                                          @endforeach
                                     </td>
                                     <td>
+                                        @foreach($d->order->spbu as $spbu)
+                                        {{$spbu->address}}
+                                         @endforeach
+                                    </td>
+                                    <td>
                                         @foreach($d->type as $type)
                                         {{$type->name}}
                                          @endforeach
@@ -181,12 +110,12 @@
                                     <td>
                                         {{$d->value}}
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         <a href="{{url('/pertamina/list-order-detail/'.$d->id) }}"
                                              class="btn btn-warning btn-sm">Edit</a>
                                         <a href="{{url('/pertamina/list-order-detail/'.$d->id) }}"
                                              class="btn btn-danger btn-sm">Delete</a>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -207,13 +136,7 @@
     <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2021 <a href="https://can.co.id/">Pertamina</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 1.3.1
-        </div>
-    </footer>
+    @extends('admin.footer')
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">

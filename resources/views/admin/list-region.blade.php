@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Order</title>
+    <title>Region</title>
     <link rel="shortcut icon" href="{{url('assets/images/pertamina.png')}}" type="image/png">
 
     <!-- Google Font: Source Sans Pro -->
@@ -34,7 +34,7 @@
                     <a href="{{url('/pertamina/list-order')}}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{url('#')}}" class="nav-link active">Assigned Order</a>
+                    <a href="{{url('/pertamina/list-region')}}" class="nav-link active">Data Region</a>
                 </li>
             </ul>
 
@@ -50,7 +50,7 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-       @extends('admin.master')
+        @extends('admin.master')
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -58,47 +58,45 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Order Assigned</h1>
+                            <h1>Region</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Order Assigned</li>
+                                <li class="breadcrumb-item active">Data Region</li>
                             </ol>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
+
             <!-- Main content -->
             <section class="content">
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">List Order Assigned</h3>
+                        <h3 class="card-title">List Data Order</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>Petugas</th>
-                                    <th>SPBU</th>
-                                    <th>Status</th>
+                                    <th>Name</th>
+                                    <th>Option</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($assign_order as $a)
+                                @foreach($region as $r)
                                 <tr>
                                     <td>
-                                          {{$a->user->name}}
+                                        {{$r->name}}
                                     </td>
                                     <td>
-                                        @foreach ($a->order->spbu as $spbu)
-                                        {{$spbu->name}}
-                                        @endforeach
-                                    </td>
-                                    <td>
-                                        {{$a->order->status}}
+                                        <a href="{{url('/pertamina/region/edit/'.$r->id) }}"
+                                             class="btn btn-warning btn-sm">Edit</a>
+                                        <a href="{{url('/pertamina/region/delete/'.$r->id) }}"
+                                             class="btn btn-danger btn-sm">Delete</a>
                                     </td>
                                 </tr>
                                 @endforeach
