@@ -11,7 +11,8 @@ class Isi_TankController extends Controller
 {
     public function index(Request $request)
     {
-        $isi_tank = Isi_Tank::with('tank')->with('type')->when(($request->get('tank_id')), function ($query) use ($request)
+        $isi_tank = Isi_Tank::with('tank')->with('type')
+        ->when(($request->get('tank_id')), function ($query) use ($request)
         {
             $query->where('tank_id', $request->get('tank_id'));
         })->when(($request->get('type_id')), function ($query) use ($request)
